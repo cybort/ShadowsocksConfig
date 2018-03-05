@@ -1,23 +1,13 @@
 {
-  "name": "ShadowsocksConfig",
+  "name": "outline-shadowsocksconfig",
   "version": "0.0.5",
-  "description": "ShadowsocksConfig",
-  "main": "ShadowsocksConfig",
-  "scripts": {
-    "gulp": "./node_modules/.bin/tsc -t ES6 -m commonjs Gulpfile.ts && gulp",
-    "build": "yarn run gulp build",
-    "test": "yarn run gulp test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/uProxy/ShadowsocksConfig.git"
-  },
-  "author": "jab <jab@users.noreply.github.com>",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/uProxy/ShadowsocksConfig/issues"
+  "scripts": {
+    "postinstall": "tsc -t ES6 -m commonjs Gulpfile.ts",
+    "build": "yarn gulp build",
+    "test": "yarn gulp test",
+    "clean": "rm -rf node_modules/ Gulpfile.js"
   },
-  "homepage": "https://github.com/uProxy/ShadowsocksConfig#readme",
   "devDependencies": {
     "@types/base-64": "^0.1.2",
     "@types/chai": "^4.0.4",
