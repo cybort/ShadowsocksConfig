@@ -4,17 +4,15 @@
   "license": "Apache-2.0",
   "scripts": {
     "postinstall": "tsc -t ES6 -m commonjs Gulpfile.ts",
-    "build": "yarn gulp build",
-    "test": "yarn gulp test",
+    "build": "gulp",
+    "test": "gulp && jasmine --config=jasmine.json",
     "clean": "rm -rf node_modules/ Gulpfile.js"
   },
   "devDependencies": {
     "@types/base-64": "^0.1.2",
-    "@types/chai": "^4.0.4",
     "@types/gulp": "^4.0.4",
-    "@types/mocha": "^2.2.43",
+    "@types/jasmine": "^2.8.6",
     "@types/node": "^8.0.41",
-    "chai": "^4.1.2",
     "commit-status-reporter": "^0.0.5",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.4.0",
@@ -26,8 +24,8 @@
     "gulp-tslint": "^8.1.2",
     "gulp-typescript": "^3.2.2",
     "gulp-util": "^3.0.8",
+    "jasmine": "^3.1.0",
     "map-stream": "^0.0.7",
-    "mocha": "^4.0.1",
     "run-sequence": "^2.2.0",
     "tslib": "^1.8.0",
     "typescript": "^2.5.3"
