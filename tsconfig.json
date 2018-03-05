@@ -6,8 +6,6 @@
     "declaration": false,
     "sourceMap": false,
     "inlineSourceMap": false,
-    "listFiles": true,
-    "traceResolution": true,
     "pretty": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
