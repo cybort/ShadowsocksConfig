@@ -6,7 +6,7 @@
     "postinstall": "tsc -t ES6 -m commonjs Gulpfile.ts",
     "build": "gulp",
     "test": "gulp && jasmine --config=jasmine.json",
-    "clean": "rm -rf node_modules/ Gulpfile.js"
+    "clean": "rm -rf node_modules/ Gulpfile.js *.spec.js"
   },
   "devDependencies": {
     "@types/base-64": "^0.1.2",
