@@ -38,4 +38,5 @@ before_install:
     fi
 
 script:
-  - yarn run gulp travis --GITHUB_TOKEN="$GITHUB_BOT_TOKEN" --COMMIT="$TRAVIS_COMMIT"
+  - yarn test
+

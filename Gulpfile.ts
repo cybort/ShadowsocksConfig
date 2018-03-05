@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
 const gulpLoadPlugins = require('gulp-load-plugins');
-const MochaLib = require('mocha');
 const map = require('map-stream');
 
 const plugins = gulpLoadPlugins();
@@ -63,45 +62,14 @@ gulp.task('build:tests', () => {
     moduleResolution: 'node',
   });
   return gulp.src([
-      './test/unit/*.ts',
+      'shadowsocks_config.spec.ts',
     ])
     .pipe(tsProject())
     .once('error', function () {
       this.once('finish', () => process.exit(1))
     })
     .js
-    .pipe(gulp.dest('./test/unit'));
-});
-
-gulp.task('build', (done: any) => {
-  runSequence(
-    'build:lib',
-    done
-  );
-});
-
-gulp.task('test:unit', () => {
-  const status = githubCommit.getStatus('Unit Tests');
-  return status.report(Statuses.pending)
-  .then(() => {
-    return new Promise((resolve) => {
-      const mocha = new MochaLib({reporter: 'list'});
-      mocha.addFile('test/unit/mocha-runner.js');
-      mocha.run((errorCount: number) => resolve(errorCount))
-    });
-  })
-  .then((errorCount: number) => {
-    const hasErrors = (errorCount > 0);
-    const state = hasErrors ? Statuses.failure : Statuses.success;
-    let description;
-    if (hasErrors) {
-      description = `${errorCount} failure${errorCount === 1 ? '' : 's'}`;
-    } else {
-      description = 'All tests passed, huzzah!';
-    }
-    return status.report(Statuses.success)
-  });
-
+    .pipe(gulp.dest('.'));
 });
 
 
@@ -133,21 +101,5 @@ gulp.task('tslint', () => {
 });
 
 
-gulp.task('test', (done: any) => {
-  runSequence(
-    'build:lib',
-    'build:tests',
-    'test:unit',
-    done
-  );
-});
+gulp.task('default', ['build:lib', 'build:tests']);
 
-gulp.task('default', ['build:lib']);
-
-gulp.task('travis', (done: any) => {
-  runSequence(
-    'tslint',
-    'test',
-    done
-  );
-});
