@@ -1,8 +1,3 @@
-bower_components/
 node_modules/
-dist/*.js
-dist/*.js.map
-Gulpfile.js
 test/unit/*.js
-test/unit/*.js.map
 Gulpfile.js
