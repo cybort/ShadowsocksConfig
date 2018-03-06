@@ -15,7 +15,6 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^8.0.41",
     "clang-format": "^1.2.2",
-    "commit-status-reporter": "^0.0.5",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.4.0",
     "gulp-debug": "^3.1.0",
