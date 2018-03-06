@@ -3,20 +3,8 @@
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
 const gulpLoadPlugins = require('gulp-load-plugins');
-const map = require('map-stream');
 
 const plugins = gulpLoadPlugins();
-
-// ----------------------------- GitHub Statuses ------------------------------
-import { Repository, Statuses, StatusOptions } from 'commit-status-reporter';
-const githubRepository = new Repository(
-  'uProxy',
-  'ShadowsocksConfig',
-  plugins.util.env.GITHUB_TOKEN,
-);
-console.log('Reporting on commit:', plugins.util.env.COMMIT);
-const githubCommit = githubRepository.commit(plugins.util.env.COMMIT);
-// ----------------------------------------------------------------------------
 
 const moduleCompatibilityHeader = `(function iife() {
   const platformExportObj = (function detectPlatformExportObj() {
@@ -70,34 +58,6 @@ gulp.task('build:tests', () => {
     })
     .js
     .pipe(gulp.dest('.'));
-});
-
-
-gulp.task('tslint', () => {
-  let errorCount = 0;
-  const status = githubCommit.getStatus('TypeScript Code Style');
-  return status.report(Statuses.pending)
-    .then(() => {
-      return gulp.src('shadowsocks_config.ts')
-        .pipe(plugins.tslint({
-          configuration: 'tslint.json',
-          formatter: 'prose'
-        }))
-        .pipe(map((file, done) => {
-          errorCount += file.tslint.errorCount;
-          done(null, file);
-        }))
-        .pipe(plugins.tslint.report({
-          emitError: false
-        }));
-    })
-    .then(() => {
-      const hasErrors = (errorCount > 0);
-      const state = hasErrors ? Statuses.failure : Statuses.success;
-      const description = hasErrors ? `failed with ${errorCount} errors` : '';
-      return status.report(state, description);
-    });
-
 });
 
 

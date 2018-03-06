@@ -13,30 +13,17 @@
 # limitations under the License.
 
 language: node_js
+
 node_js:
   - 8
-env:
-  global:
-    - YARN_VERSION="1.2.1"
-    - YARN_CACHE_FOLDER="${HOME}/.yarn-cache"
-    - secure: "ZpBgEPY361Hx60ovvPizm7EBtmoblkVM3uUAP8bHlQ8VC33fuSNhbm/MP6iqiweqOQk2qvuLdj0RphX6GhrB76bYGUw+NrxFTn2NhC/+6qUYBaaNgytNllBClcxN11WxwVS9bUOrXtrSqtCL4mv5WUaZcHwZllfXqGlLOdmUE3KYsGoGerMRSMajIleMDYerrbd2SuqFThyq6/zRux/arqs3Vz/iRSZrCHaoU4Ff8TerIxuz+4YnUtvQHNVe6hZVX8254cPWLebNJxAQgkfMbdVz+pc70+i6R9iMj85XKnR3R+QYh3pg3jFtsKTKdyyKY/avKIN3X4NMjL5H0lbYxynKoKvZi8hlhMNu36Fi5P0i9OGXkfA8vbB57C6TDcGxq9g2jIvx0dmSU9W14Z6IFE1E2FAeuLAdZlFs0nB6kWgnZ8kYJarpOFdNk3AyT0L6a4qAJCEjfoBd7p+eUrFqEP38XaXFXtTXTxllhpUvUhNAD5Dwsp2lN907XU6GZoafeGNihk+YaqaC6moKNYy4fzOUMoU7GpC88lNARE57WrGLsCXrUJmxJ5U631HF3PH9pEMFqKNe6y4cXxJmMurm+jxgRd64RCJN9BDuw8OW841gYMTggY01C00zr4W9zDawHNCq+C8dT5LLTnrWWZ+Chph26tOHxCsjQbjqa5el5hk="
 
 cache:
-  directories:
-    - node_modules
-    # work around https://github.com/travis-ci/travis-yaml/issues/111
-    - ${YARN_CACHE_FOLDER}
+  yarn: true
 
 before_install:
-  # https://yarnpkg.com/en/docs/install-ci#travis-tab
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
-  - export PATH=$HOME/.yarn/bin:$PATH
-  - if [[ $(yarn --version) != $YARN_VERSION ]]; then
-      echo "WARNING unexpected yarn version";
-      which -a yarn;
-      yarn --version;
-    fi
+  # https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Travis-CI-supports-yarn
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.5.1
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
 script:
   - yarn test
-
