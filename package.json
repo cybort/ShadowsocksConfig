@@ -6,7 +6,7 @@
     "postinstall": "tsc -t ES6 -m commonjs Gulpfile.ts",
     "build": "gulp",
     "test": "gulp && jasmine --config=jasmine.json",
-    "precommit": "tslint -p . --fix; git-clang-format",
+    "precommit": "tslint -p . --fix; git-clang-format --extensions ts",
     "clean": "rm -rf node_modules/ Gulpfile.js *.spec.js"
   },
   "devDependencies": {
