@@ -1,12 +1,11 @@
 {
   "name": "outline-shadowsocksconfig",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "Apache-2.0",
   "scripts": {
-    "postinstall": "tsc -t ES6 -m commonjs Gulpfile.ts",
-    "build": "gulp",
-    "test": "gulp && jasmine --config=jasmine.json",
-    "precommit": "tslint -p . --fix; git-clang-format",
+    "build": "tsc -t ES6 -m commonjs Gulpfile.ts && gulp",
+    "test": "yarn build && jasmine --config=jasmine.json",
+    "precommit": "tslint -p . --fix; git-clang-format --extensions ts",
     "clean": "rm -rf node_modules/ Gulpfile.js *.spec.js"
   },
   "devDependencies": {
@@ -15,7 +14,6 @@
     "@types/jasmine": "^2.8.6",
     "@types/node": "^8.0.41",
     "clang-format": "^1.2.2",
-    "commit-status-reporter": "^0.0.5",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.4.0",
     "gulp-debug": "^3.1.0",

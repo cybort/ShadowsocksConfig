@@ -9,7 +9,7 @@
     "pretty": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "removeComments": true,
+    "removeComments": false,
     "strictNullChecks": true,
     "lib": [
       "dom",
